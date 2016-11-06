@@ -55,7 +55,7 @@ public class Fraction {
 
         if(denominator == BigInteger.valueOf(0)){
 
-            System.out.println("Error, your denominator parameter cannot be Zero!");
+            throw new IllegalArgumentException("Error, your denominator parameter cannot be Zero!");
         }
 
         //use the compareTo method in BigInteger and compare with a BigInteger value of 0
@@ -85,7 +85,7 @@ public class Fraction {
      */
     public Fraction(long numerator, long denominator) {
         if(denominator == 0){
-            System.out.println("Error, your denominator parameter cannot be Zero!");
+            throw new IllegalArgumentException("Error, your denominator parameter cannot be Zero!");
         }
 
         if(denominator < 0) {
