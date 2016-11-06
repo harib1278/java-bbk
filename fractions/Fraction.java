@@ -298,8 +298,20 @@ public class Fraction {
      * @return the minimum of this Fraction and val
      */
     public Fraction min(Fraction val) {        
+        
+        BigInteger n = BigInteger.valueOf(0);
+        BigInteger d = BigInteger.valueOf(0);
+        BigInteger gcdom = BigInteger.valueOf(0);
 
-       return null;
+        gcdom = this.numerator.gcd(this.denominator);
+
+
+        n = this.numerator.divide(gcdom);
+        d = this.denominator.divide(gcdom);
+
+        Fraction results = new Fraction(n, d);
+
+        return results;
 
     }
 
