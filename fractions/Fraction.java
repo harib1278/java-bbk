@@ -38,7 +38,7 @@ public class Fraction {
      * @param val  the value the Fraction is supposed to take
      */
     public Fraction(long val) {        
-
+        
         //use the long value and assign it to the class numerator, use the valueOf methods of bigInteger to convert the long datatype into BigInteger
         this.numerator = BigInteger.valueOf(val);
         this.denominator = BigInteger.valueOf(1);
@@ -158,6 +158,7 @@ public class Fraction {
      */
     public static Fraction sumAll(Fraction[] fractions) {
         // TODO Auto-generated method stub
+        
         return null;
     }    
 
@@ -169,8 +170,12 @@ public class Fraction {
      * @return this * val
      */
     public Fraction multiply(Fraction val) {
-        // TODO Auto-generated method stub
-        return null;
+        BigInteger left = this.numerator.multiply(val.numerator);
+        BigInteger right = this.denominator.multiply(val.denominator);
+
+        //instansiate and return
+        Fraction results = new Fraction(left.multiply(right));
+        return results;
     }
 
     /**
@@ -180,8 +185,12 @@ public class Fraction {
      * @return this / val
      */
     public Fraction divide(Fraction val) {
-        // TODO Auto-generated method stub
-        return null;
+        BigInteger left = this.numerator.multiply(val.numerator);
+        BigInteger right = this.denominator.multiply(val.denominator);
+
+        //instansiate and return
+        Fraction results = new Fraction(left.divide(right));
+        return results;
     }
 
     /**
@@ -200,8 +209,15 @@ public class Fraction {
      * @return 1 / this
      */
     public Fraction invert() {
-        // TODO Auto-generated method stub
-        return null;
+        
+        
+        BigInteger n = this.denominator;
+        BigInteger d = this.numerator;
+
+        //instansiate and return
+        Fraction results = new Fraction(n, d);
+
+        return results;
     }
 
     /**
@@ -304,7 +320,8 @@ public class Fraction {
      * @return a normalised String representation of this Fraction
      */
     public String toString() {
-        // TODO Auto-generated method stub
-        return null;
+
+        String results = this.numerator + "/" + this.denominator;
+        return results;
     }
 }
