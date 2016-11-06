@@ -66,7 +66,7 @@ public class Fraction {
             denominator = denominator.multiply(BigInteger.valueOf(-1));
         } else if(res == 0){
 
-            //make the fraction 0/0 if the denominator is 0
+            //make the fraction 0 / 0 if the denominator is 0
             numerator = BigInteger.valueOf(0);
             denominator = BigInteger.valueOf(0);
         }
@@ -137,7 +137,7 @@ public class Fraction {
         BigInteger left = this.numerator.multiply(val.denominator);
         BigInteger right = this.denominator.multiply(val.numerator);
 
-        //now add
+        //now subtract
         left  = left.subtract(right);
 
         //perform the final right handside calculation
@@ -187,6 +187,7 @@ public class Fraction {
 
         //instansiate and return
         Fraction results = new Fraction(left.divide(right));
+
         return results;
     }
 
@@ -202,6 +203,7 @@ public class Fraction {
 
         //instansiate and return
         Fraction results = new Fraction(left.multiply(right));
+
         return results;
     }
 
@@ -290,6 +292,7 @@ public class Fraction {
 
         BigInteger n = BigInteger.valueOf(0);
         BigInteger d = BigInteger.valueOf(0);
+        //intitalise the greatest common denominatior
         BigInteger gcdom = BigInteger.valueOf(0);
 
         gcdom = this.numerator.gcd(this.denominator);
@@ -313,6 +316,7 @@ public class Fraction {
 
         BigInteger n = BigInteger.valueOf(0);
         BigInteger d = BigInteger.valueOf(0);
+        //intitalise the greatest common denominatior
         BigInteger gcdom = BigInteger.valueOf(0);
 
         gcdom = this.numerator.gcd(this.denominator);
