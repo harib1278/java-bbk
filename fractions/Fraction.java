@@ -14,12 +14,13 @@ import java.math.*;
  *
  * @see java.math.BigInteger
  *
- * @author
+ * @author Thomas Shaddock
  */
 public class Fraction {
 
     /* Insert your instance variables here. */
-
+    private BigInteger numerator;
+    private BigInteger denominator;
     
     /**
      * Constructs a Fraction taking the value of its parameter.
@@ -27,7 +28,8 @@ public class Fraction {
      * @param val  non-null; the value the Fraction is supposed to take
      */
     public Fraction(BigInteger val) {
-        // TODO Auto-generated method stub
+        this.numerator = val;
+        this.denominator = BigInteger.valueOf(1);
     }
 
     /**
@@ -35,8 +37,11 @@ public class Fraction {
      *
      * @param val  the value the Fraction is supposed to take
      */
-    public Fraction(long val) {
-        // TODO Auto-generated method stub
+    public Fraction(long val) {        
+
+        //use the long value and assign it to the class numerator, use the valueOf methods of bigInteger to convert the long datatype into BigInteger
+        this.numerator = BigInteger.valueOf(val);
+        this.denominator = BigInteger.valueOf(1);
     }
 
     /**
@@ -47,7 +52,28 @@ public class Fraction {
      * @param denominator  non-null; value of the denominator
      */
     public Fraction(BigInteger numerator, BigInteger denominator) {
-        // TODO Auto-generated method stub
+
+        if(denominator == BigInteger.valueOf(0)){
+
+            System.out.println("Error, your denominator parameter cannot be Zero!");
+        }
+
+        //use the compareTo method in BigInteger and compare with a BigInteger value of 0
+        //-1 = less than
+        //0 = eaual to
+        //+1 = greater than
+        int res = denominator.compareTo(BigInteger.valueOf(0)); 
+
+        //deal with negative input fractions using the BigInteger.multiply method
+        if(res < 0){
+
+            numerator = numerator.multiply(BigInteger.valueOf(-1));
+            denominator = denominator.multiply(BigInteger.valueOf(-1));
+        }
+
+        //assign the private class variables the values        
+        this.numerator = numerator;
+        this.denominator = denominator;
     }
 
     /**
@@ -58,7 +84,12 @@ public class Fraction {
      * @param denominator  the denominator of the Fraction
      */
     public Fraction(long numerator, long denominator) {
-        // TODO Auto-generated method stub
+        if(denominator == 0){
+
+            System.out.println("Error, your denominator parameter cannot be Zero!");
+        }
+
+
     }
 
     /**
