@@ -85,15 +85,14 @@ public class Fraction {
      */
     public Fraction(long numerator, long denominator) {
         if(denominator == 0){
-
             System.out.println("Error, your denominator parameter cannot be Zero!");
         }
 
         if(denominator < 0) {
-            numerator *= -1;
+            numerator   *= -1;
             denominator *= -1;
         }
-        
+
         this.numerator = BigInteger.valueOf(numerator);
         this.denominator = BigInteger.valueOf(denominator);
 
@@ -107,6 +106,31 @@ public class Fraction {
      * @return this + val
      */
     public Fraction add(Fraction val) {
+        //Fraction results = new Fraction((this.numerator * val.denominator) + (this.denominator * val.numerator), this.denominator * val.denominator);
+
+        // break up the calculation into logical parts of the equation
+        BigInteger left = this.numerator.multiply(val.denominator);
+        BigInteger right = this.denominator.multiply(val.numerator);
+
+        //now add
+        left  = left.add(right);
+
+        //perform the final right handside calculation
+        right = this.denominator.multiply(val.denominator);
+
+        //instansiate and return
+        Fraction results = new Fraction(left, right);
+
+        return results;
+    }
+
+    /**
+     * Returns a Fraction whose value is (this - val).
+     *
+     * @param val  non-null; to be subtracted from this Fraction
+     * @return this - val
+     */
+    public Fraction subtract(Fraction val) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -121,18 +145,7 @@ public class Fraction {
     public static Fraction sumAll(Fraction[] fractions) {
         // TODO Auto-generated method stub
         return null;
-    }
-
-    /**
-     * Returns a Fraction whose value is (this - val).
-     *
-     * @param val  non-null; to be subtracted from this Fraction
-     * @return this - val
-     */
-    public Fraction subtract(Fraction val) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    }    
 
     /**
      * Returns a Fraction whose value is (this * val).
