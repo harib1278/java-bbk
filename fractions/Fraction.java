@@ -106,7 +106,7 @@ public class Fraction {
      * @return this + val
      */
     public Fraction add(Fraction val) {
-        //Fraction results = new Fraction((this.numerator * val.denominator) + (this.denominator * val.numerator), this.denominator * val.denominator);
+        //(this.numerator * val.denominator) + (this.denominator * val.numerator), this.denominator * val.denominator);
 
         // break up the calculation into logical parts of the equation
         BigInteger left = this.numerator.multiply(val.denominator);
@@ -131,8 +131,22 @@ public class Fraction {
      * @return this - val
      */
     public Fraction subtract(Fraction val) {
-        // TODO Auto-generated method stub
-        return null;
+        //(this.numerator * val.denominator) - (this.denominator * val.numerator), this.denominator * val.denominator);
+
+        // break up the calculation into logical parts of the equation
+        BigInteger left = this.numerator.multiply(val.denominator);
+        BigInteger right = this.denominator.multiply(val.numerator);
+
+        //now add
+        left  = left.subtract(right);
+
+        //perform the final right handside calculation
+        right = this.denominator.multiply(val.denominator);
+
+        //instansiate and return
+        Fraction results = new Fraction(left, right);
+
+        return results;
     }
 
     /**
