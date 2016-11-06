@@ -89,6 +89,13 @@ public class Fraction {
             System.out.println("Error, your denominator parameter cannot be Zero!");
         }
 
+        if(denominator < 0) {
+            numerator *= -1;
+            denominator *= -1;
+        }
+        
+        this.numerator = BigInteger.valueOf(numerator);
+        this.denominator = BigInteger.valueOf(denominator);
 
     }
 
