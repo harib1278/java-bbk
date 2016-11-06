@@ -318,12 +318,18 @@ public class Fraction {
         BigInteger d = BigInteger.valueOf(0);
         //intitalise the greatest common denominatior
         BigInteger gcdom = BigInteger.valueOf(0);
+        //initialise lowest common multiple
+        BigInteger lcm = BigInteger.valueOf(0);
 
         gcdom = this.numerator.gcd(this.denominator);
+        
+        //use eulclidean algo to determine lowest common multiple
+        //lcm = a / gcd * b
+        lcm = n.divide(gcdom.multiply(d));
 
 
-        n = this.numerator.divide(gcdom);
-        d = this.denominator.divide(gcdom);
+        n = this.numerator.divide(lcm);
+        d = this.denominator.divide(lcm);
 
         Fraction results = new Fraction(n, d);
 
