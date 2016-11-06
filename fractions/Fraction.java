@@ -288,7 +288,19 @@ public class Fraction {
      */
     public Fraction max(Fraction val) {
 
-        return null;
+        BigInteger n = BigInteger.valueOf(0);
+        BigInteger d = BigInteger.valueOf(0);
+        BigInteger gcdom = BigInteger.valueOf(0);
+
+        gcdom = this.numerator.gcd(this.denominator);
+
+
+        n = this.numerator.multiply(gcdom);
+        d = this.denominator.multiply(gcdom);
+
+        Fraction results = new Fraction(n, d);
+
+        return results;
     }
 
     /**
@@ -298,7 +310,7 @@ public class Fraction {
      * @return the minimum of this Fraction and val
      */
     public Fraction min(Fraction val) {        
-        
+
         BigInteger n = BigInteger.valueOf(0);
         BigInteger d = BigInteger.valueOf(0);
         BigInteger gcdom = BigInteger.valueOf(0);
