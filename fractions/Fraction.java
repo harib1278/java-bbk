@@ -38,7 +38,7 @@ public class Fraction {
      * @param val  the value the Fraction is supposed to take
      */
     public Fraction(long val) {        
-        
+
         //use the long value and assign it to the class numerator, use the valueOf methods of bigInteger to convert the long datatype into BigInteger
         this.numerator = BigInteger.valueOf(val);
         this.denominator = BigInteger.valueOf(1);
@@ -53,11 +53,6 @@ public class Fraction {
      */
     public Fraction(BigInteger numerator, BigInteger denominator) {
 
-        if(denominator == BigInteger.valueOf(0)){
-
-            throw new IllegalArgumentException("Error, your denominator parameter cannot be Zero!");
-        }
-
         //use the compareTo method in BigInteger and compare with a BigInteger value of 0
         //-1 = less than
         //0 = eaual to
@@ -69,6 +64,11 @@ public class Fraction {
 
             numerator = numerator.multiply(BigInteger.valueOf(-1));
             denominator = denominator.multiply(BigInteger.valueOf(-1));
+        } else if(res == 0){
+
+            //make the fraction 0/0 if the denominator is 0
+            numerator = BigInteger.valueOf(0);
+            denominator = BigInteger.valueOf(0);
         }
 
         //assign the private class variables the values        
@@ -85,10 +85,10 @@ public class Fraction {
      */
     public Fraction(long numerator, long denominator) {
         if(denominator == 0){
-            throw new IllegalArgumentException("Error, your denominator parameter cannot be Zero!");
-        }
-
-        if(denominator < 0) {
+            //make the fraction 0/0 if the denominator is 0
+            numerator = 0;
+            denominator = 0;
+        } else if(denominator < 0) {
             numerator   *= -1;
             denominator *= -1;
         }
@@ -174,7 +174,7 @@ public class Fraction {
         BigInteger right = this.denominator.multiply(val.denominator);
 
         //instansiate and return
-        Fraction results = new Fraction(left.multiply(right));
+        Fraction results = new Fraction(left.divide(right));
         return results;
     }
 
@@ -189,7 +189,7 @@ public class Fraction {
         BigInteger right = this.denominator.multiply(val.denominator);
 
         //instansiate and return
-        Fraction results = new Fraction(left.divide(right));
+        Fraction results = new Fraction(left.multiply(right));
         return results;
     }
 
@@ -199,8 +199,15 @@ public class Fraction {
      * @return -this
      */
     public Fraction negate() {
-        // TODO Auto-generated method stub
-        return null;
+
+        BigInteger zero = BigInteger.valueOf(0);
+        BigInteger n = zero.subtract(this.numerator);
+        BigInteger d = zero.subtract(this.denominator);   
+
+        //instansiate and return
+        Fraction results = new Fraction(n, d);
+
+        return results;
     }
 
     /**
@@ -210,7 +217,7 @@ public class Fraction {
      */
     public Fraction invert() {
         
-        
+        // switch the numerator and  denominator arround
         BigInteger n = this.denominator;
         BigInteger d = this.numerator;
 
@@ -228,8 +235,20 @@ public class Fraction {
      *  0 if it is zero, -1 if it is negative) 
      */
     public int signum() {
-        // TODO Auto-generated method stub
-        return 0;
+
+        //if denominator is less than 0 return -1.
+        BigInteger n = this.denominator;
+        int res = n.compareTo(BigInteger.valueOf(0));
+
+        if(res == -1){
+
+            return -1;
+        } else if (res == 0) {
+
+            return 0;    
+        } else{
+            return 1;
+        }
     }
 
     /**
@@ -240,8 +259,13 @@ public class Fraction {
      * @return the absolute value of this Fraction
      */
     public Fraction abs() {
-        // TODO Auto-generated method stub
-        return null;
+
+        BigInteger n = this.numerator.abs();
+        BigInteger d = this.denominator.abs();
+
+        Fraction results = new Fraction(n, d);
+
+        return results;
     }
 
     /**
@@ -251,7 +275,7 @@ public class Fraction {
      * @return the maximum of this Fraction and val
      */
     public Fraction max(Fraction val) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
@@ -262,7 +286,9 @@ public class Fraction {
      * @return the minimum of this Fraction and val
      */
     public Fraction min(Fraction val) {
-        // TODO Auto-generated method stub
+
+        //divde by 1,2,3,4,5,6 ... seeing if modulus is != 0
+
         return null;
     }
 
@@ -275,8 +301,15 @@ public class Fraction {
      * @return this Fraction taken to the power of exponent
      */
     public Fraction pow(int exponent) {
-        // TODO Auto-generated method stub
-        return null;
+        BigInteger n = this.numerator;
+        BigInteger d = this.denominator;
+
+        n = n.pow(exponent);
+        d = d.pow(exponent);
+
+        Fraction results = new Fraction(n, d);
+
+        return results;
     }
 
     /**
@@ -288,7 +321,24 @@ public class Fraction {
      * @see java.math.BigInteger#compareTo(BigInteger)
      */
     public int compareTo(Fraction val) {
-        // TODO Auto-generated method stub
+        BigInteger first = this.numerator.multiply(val.denominator);
+        BigInteger second = val.numerator.multiply(this.denominator);
+
+        int res = first.compareTo(second);
+
+        if(res > 0) {
+
+            return 1;
+
+        } else if (res < 0) {
+
+            return -1;
+
+        } else if (res == 0) {
+
+            return 0;
+        }
+        //fallback
         return 0;
     }
 
@@ -301,7 +351,12 @@ public class Fraction {
      *  false otherwise
      */
     public boolean isEqualTo(Fraction val) {
-        // TODO Auto-generated method stub
+
+        //use the method created above
+        if(this.compareTo(val) == 0){
+            return true;
+        }
+
         return false;
     }
 
