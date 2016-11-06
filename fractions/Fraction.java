@@ -23,7 +23,7 @@ public class Fraction {
     private BigInteger denominator;
     
     /**
-     * Constructs a Fraction taking the value of its parameter.
+     * Constructs a Fraction taking the value of its parameter.ja
      *
      * @param val  non-null; the value the Fraction is supposed to take
      */
@@ -346,12 +346,10 @@ public class Fraction {
 
             return -1;
 
-        } else if (res == 0) {
-
+        } else {
+            //res == 0
             return 0;
         }
-        //fallback
-        return 0;
     }
 
     /**
@@ -388,7 +386,36 @@ public class Fraction {
      */
     public String toString() {
 
-        String results = this.numerator + "/" + this.denominator;
+        //initalise method variables
+        String results = "";
+        BigInteger resultNumerator = BigInteger.valueOf(0);
+        BigInteger resultDenominator = BigInteger.valueOf(0);
+        BigInteger gcdom = BigInteger.valueOf(0);
+
+        //compare the two values to 0
+        int resNumerator = this.numerator.compareTo(BigInteger.valueOf(0));
+        int resDenominator = this.denominator.compareTo(BigInteger.valueOf(0));
+
+        //if fraction denominator or numerator are 0 then return 0
+        if(resNumerator == 0 || resDenominator == 0){
+            results = "0";
+        } else {
+            //calculate the normalised fraction
+            if (resDenominator < 0) {
+
+                resultNumerator = this.numerator.multiply(BigInteger.valueOf(-1));
+                resultDenominator = this.denominator.multiply(BigInteger.valueOf(-1));
+
+            } else {
+                //get greatest common denominator using gcd method
+                gcdom = this.numerator.gcd(this.denominator);
+
+                resultNumerator = this.numerator.divide(gcdom);
+                resultDenominator = this.denominator.divide(gcdom);
+            }
+            results = resultNumerator + " / " + resultDenominator;
+        }
+        
         return results;
     }
 }
