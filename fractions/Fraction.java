@@ -157,9 +157,21 @@ public class Fraction {
      *  vals otherwise
      */
     public static Fraction sumAll(Fraction[] fractions) {
-        // TODO Auto-generated method stub
-        
-        return null;
+
+        BigInteger finalNumerator = BigInteger.valueOf(0);
+        BigInteger finalDenominator  = BigInteger.valueOf(0);
+
+        for(Fraction i : fractions){
+            finalNumerator = finalNumerator.add(i.numerator);
+        }
+
+        for(Fraction i : fractions){
+            finalDenominator = finalDenominator.add(i.denominator);
+        }
+
+        Fraction results = new Fraction(finalNumerator, finalDenominator);
+
+        return results;
     }    
 
     /**
