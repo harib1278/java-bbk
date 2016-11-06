@@ -297,11 +297,10 @@ public class Fraction {
      * @param val  non-null; the value with which the minimum is to be computed
      * @return the minimum of this Fraction and val
      */
-    public Fraction min(Fraction val) {
+    public Fraction min(Fraction val) {        
 
-        //divde by 1,2,3,4,5,6 ... seeing if modulus is != 0
+       return null;
 
-        return null;
     }
 
     /**
