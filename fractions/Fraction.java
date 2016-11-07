@@ -250,17 +250,23 @@ public class Fraction {
      */
     public int signum() {
 
-        //if denominator is less than 0 return -1.
-        BigInteger n = this.denominator;
-        int res = n.compareTo(BigInteger.valueOf(0));
+        //if denominator or is less than 0 return -1, if both are then fraction is positive
+        BigInteger n = this.numerator;
+        BigInteger d = this.denominator;
+        int res  = n.compareTo(BigInteger.valueOf(0));
+        int res2 = d.compareTo(BigInteger.valueOf(0));
 
-        if(res == -1){
+        if(res == -1 && res2 == -1){
 
-            return -1;
-        } else if (res == 0) {
+            return 1;
+        } else if (res < 0 && res2 > 0) {
+
+            return 0;    
+        } else if (res > 0 && res2 < 0) {
 
             return 0;    
         } else{
+            //else both n and d are positive
             return 1;
         }
     }
