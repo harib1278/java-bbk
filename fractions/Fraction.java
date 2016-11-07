@@ -40,7 +40,7 @@ public class Fraction {
     public Fraction(long val) {        
 
         //use the long value and assign it to the class numerator, use the valueOf methods of bigInteger to convert the long datatype into BigInteger
-        this.numerator = BigInteger.valueOf(val);
+        this.numerator   = BigInteger.valueOf(val);
         this.denominator = BigInteger.valueOf(1);
     }
 
@@ -67,12 +67,12 @@ public class Fraction {
         } else if(res == 0){
 
             //make the fraction 0 / 0 if the denominator is 0
-            numerator = BigInteger.valueOf(0);
+            numerator   = BigInteger.valueOf(0);
             denominator = BigInteger.valueOf(0);
         }
 
         //assign the private class variables the values        
-        this.numerator = numerator;
+        this.numerator   = numerator;
         this.denominator = denominator;
     }
 
@@ -93,7 +93,7 @@ public class Fraction {
             denominator *= -1;
         }
 
-        this.numerator = BigInteger.valueOf(numerator);
+        this.numerator   = BigInteger.valueOf(numerator);
         this.denominator = BigInteger.valueOf(denominator);
 
     }
@@ -109,7 +109,7 @@ public class Fraction {
         //(this.numerator * val.denominator) + (this.denominator * val.numerator), this.denominator * val.denominator);
 
         // break up the calculation into logical parts of the equation
-        BigInteger left = this.numerator.multiply(val.denominator);
+        BigInteger left  = this.numerator.multiply(val.denominator);
         BigInteger right = this.denominator.multiply(val.numerator);
 
         //now add
@@ -134,7 +134,7 @@ public class Fraction {
         //(this.numerator * val.denominator) - (this.denominator * val.numerator), this.denominator * val.denominator);
 
         // break up the calculation into logical parts of the equation
-        BigInteger left = this.numerator.multiply(val.denominator);
+        BigInteger left  = this.numerator.multiply(val.denominator);
         BigInteger right = this.denominator.multiply(val.numerator);
 
         //now subtract
@@ -158,7 +158,7 @@ public class Fraction {
      */
     public static Fraction sumAll(Fraction[] fractions) {
 
-        BigInteger finalNumerator = BigInteger.valueOf(0);
+        BigInteger finalNumerator    = BigInteger.valueOf(0);
         BigInteger finalDenominator  = BigInteger.valueOf(0);
 
         for(Fraction i : fractions){
@@ -182,10 +182,13 @@ public class Fraction {
      * @return this * val
      */
     public Fraction multiply(Fraction val) {
-        BigInteger left = this.numerator.multiply(val.numerator);
+        //(a*c)
+        BigInteger left  = this.numerator.multiply(val.numerator);
+        //(b*d)
         BigInteger right = this.denominator.multiply(val.denominator);
 
         //instansiate and return
+        //(a*c)/(b*d)
         Fraction results = new Fraction(left.divide(right));
 
         return results;
@@ -198,7 +201,8 @@ public class Fraction {
      * @return this / val
      */
     public Fraction divide(Fraction val) {
-        BigInteger left = this.numerator.multiply(val.numerator);
+        //same also as above except the final calculation is a multiplication
+        BigInteger left  = this.numerator.multiply(val.numerator);
         BigInteger right = this.denominator.multiply(val.denominator);
 
         //instansiate and return
@@ -427,12 +431,12 @@ public class Fraction {
 
         //initalise method variables
         String results = "";
-        BigInteger resultNumerator = BigInteger.valueOf(0);
+        BigInteger resultNumerator   = BigInteger.valueOf(0);
         BigInteger resultDenominator = BigInteger.valueOf(0);
         BigInteger gcdom = BigInteger.valueOf(0);
 
         //compare the two values to 0
-        int resNumerator = this.numerator.compareTo(BigInteger.valueOf(0));
+        int resNumerator   = this.numerator.compareTo(BigInteger.valueOf(0));
         int resDenominator = this.denominator.compareTo(BigInteger.valueOf(0));
 
         //if fraction denominator or numerator are 0 then return 0
