@@ -218,6 +218,7 @@ public class Fraction {
      */
     public Fraction negate() {
 
+        // Subtract from zero the values of the denominator an numerator
         BigInteger zero = BigInteger.valueOf(0);
         BigInteger n = zero.subtract(this.numerator);
         BigInteger d = zero.subtract(this.denominator);   
@@ -254,7 +255,7 @@ public class Fraction {
      */
     public int signum() {
 
-        //if denominator or is less than 0 return -1, if both are then fraction is positive
+        //fraction is negative if either the numerator or denominator (but NOT both) are negative
         BigInteger n = this.numerator;
         BigInteger d = this.denominator;
         int res  = n.compareTo(BigInteger.valueOf(0));
@@ -283,7 +284,7 @@ public class Fraction {
      * @return the absolute value of this Fraction
      */
     public Fraction abs() {
-
+        //use math.abs() method to get absolute value
         BigInteger n = this.numerator.abs();
         BigInteger d = this.denominator.abs();
 
@@ -359,6 +360,7 @@ public class Fraction {
         BigInteger n = this.numerator;
         BigInteger d = this.denominator;
 
+        //use math.pow() method to calculate the power
         n = n.pow(exponent);
         d = d.pow(exponent);
 
